@@ -2,29 +2,27 @@ require 'watir'
 require 'pry'
 require 'nokogiri'
 require 'open-uri'
+require 'mimemagic'
 
+
+search_term = ARGV[0] || 'hotdog'
 
 browser = Watir::Browser.new(:chrome)
 
 browser.goto 'images.google.com'
-browser.text_fields.first.set 'hotdog'
-
-sleep 1
+browser.text_fields.first.set search_term
 
 browser.send_keys :enter
-
-sleep 1
 
 doc = Nokogiri.parse(browser.html)
 
 image_urls = (doc.css 'img.rg_ic').map{|img|  
-                img.values.select{|v| /^http/ === v}.first 
-              }.compact
+  img.values.select{|v| /^http/ === v}.first 
+}.compact
 
-
+`mkdir "./images/#{search_term}/" `
 image_urls.each_with_index do |url, index|
   download = open(url)
-
-  IO.copy_stream(download, "./images/image_#{index}")
+  type = MimeMagic.by_magic(download).subtype
+  IO.copy_stream(download, "./images/#{search_term}/image_#{index}.#{type}")
 end
-
