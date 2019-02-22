@@ -41,6 +41,7 @@ image_urls.each_with_index do |url, index|
   download = open(url)
   type = MimeMagic.by_magic(download).subtype
   IO.copy_stream(download, "./images/#{search_term}/image_#{index}.#{type}")
+  puts "image saved: ./images/#{search_term}/image_#{index}.#{type}"
 end
 
 image_base_64.each.with_index(image_urls.length) do |text, index|
@@ -48,5 +49,6 @@ image_base_64.each.with_index(image_urls.length) do |text, index|
   File.open("./images/#{search_term}/image_#{index}.#{match[:type]}", 'wb') do |f|
     f.write(  Base64.decode64(match[:data]))
   end
+  puts "image saved: ./images/#{search_term}/image_#{index}.#{match[:type]}"
 end
 
