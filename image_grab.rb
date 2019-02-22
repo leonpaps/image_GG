@@ -7,6 +7,8 @@ require 'mimemagic'
 # remove danger chars
 search_term = ARGV[0] || 'hotdog'
 
+pages = 1
+
 browser = Watir::Browser.new(:chrome)
 
 browser.goto 'images.google.com'
@@ -14,7 +16,10 @@ browser.text_fields.first.set search_term
 
 browser.send_keys :enter
 
-200.times{browser.send_keys :space ; sleep 0.01 }
+pages.times do
+  200.times{browser.send_keys :space ; sleep 0.01 }
+  browser.button(:value => "Show more results").click
+end
 
 doc = Nokogiri.parse(browser.html)
 
