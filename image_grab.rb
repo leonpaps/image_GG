@@ -14,6 +14,8 @@ browser.text_fields.first.set search_term
 
 browser.send_keys :enter
 
+200.times{browser.send_keys :space ; sleep 0.01 }
+
 doc = Nokogiri.parse(browser.html)
 
 image_base_64 = []
