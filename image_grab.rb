@@ -18,7 +18,8 @@ browser.send_keys :enter
 
 pages.times do
   200.times{browser.send_keys :space ; sleep 0.01 }
-  browser.button(:value => "Show more results").click
+  load_more = browser.button(:value => "Show more results")
+  load_more.click if load_more
 end
 
 doc = Nokogiri.parse(browser.html)
