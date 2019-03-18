@@ -23,3 +23,8 @@ run the image grab script with a search term as the first argument
 eg `image_grab.rb 'cat in a hat'`
 
 It should open an instance of chrome and start downloading pictures to the /images/#{search_term} directory
+
+
+# Disclaimer:
+I made this for fun, I am not responsible for the content it fetches nor claim ownership of said content.
+Use responsibly!
