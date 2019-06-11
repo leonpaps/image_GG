@@ -1,8 +1,20 @@
-require 'watir'
-require 'pry'
-require 'nokogiri'
+# require 'watir'
+# require 'pry'
+# require 'nokogiri'
+# require 'mimemagic'
+
 require 'open-uri'
-require 'mimemagic'
+require 'bundler/inline'
+
+gemfile do
+  source 'https://rubygems.org'
+  gem 'watir'
+  gem 'pry'
+  gem 'nokogiri'
+  gem 'mimemagic'
+end
+
+puts 'Gems installed and loaded!'
 
 # remove danger chars
 search_term = ARGV[0] || 'hotdog'
