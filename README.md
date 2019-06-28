@@ -1,26 +1,17 @@
 # image_GG
-image grabber from google images
+Image grabber from google images
 
 
 # Setup instructions
 
-install ruby (I used version `2.5.3p105` ) but it shouldn't make a difference
+Install ruby (I used version `2.5.3p105` ) but it shouldn't make a difference
 
-install the following gems:
+Run the following command to install the required gems:
 
- - watir
- - pry
- - nokogiri
- - open'
- - mimemagic
+`gem install watir pry nokogiri mimemagic webdrivers`
 
-
- ### Download the chrome web driver and put it in your path.
-This link should help:
-http://watir.com/guides/drivers/
-
-run the image grab script with a search term as the first argument
-eg `image_grab.rb 'cat in a hat'`
+run the image grab script with a search term as the first argument and the number of images as the second term
+eg `image_grab.rb 'cat in a hat' 10`
 
 It should open an instance of chrome and start downloading pictures to the /images/#{search_term} directory
 
